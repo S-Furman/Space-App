@@ -1,0 +1,32 @@
+.blur {
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.p {
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  padding: 0, 10px;
+  font-size: 1.25em;
+}
+
+.data {
+  position: relative;
+  box-sizing: border-box;
+  width: 14.66%;
+  margin: 1%;
+
+  padding: 1%;
+  display: inline-block;
+}
+
+.firstDay {
+  width: 40%;
+  height: 45%;
+  position: absolute;
+  left: 20px;
+}

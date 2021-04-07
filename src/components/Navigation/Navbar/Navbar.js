@@ -5,7 +5,7 @@ import styles from "./Navbar.module.css";
 const Navbar = () => (
   <header className={styles.header}>
     <img src={Logo} alt="logo" className={styles.logo} />
-    <nav>
+    <nav className={styles.nav}>
       <NavigationItems></NavigationItems>
     </nav>
   </header>
