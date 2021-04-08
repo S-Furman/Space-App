@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./NextFlightCounter.module.css";
-
+import { useSpring, animated } from "react-spring";
 const NextFlightCounter = (props) => {
   const actualDate = new Date();
   const remainingTime = (props.time.getTime() - actualDate.getTime()) / 1000;
@@ -36,16 +36,20 @@ const NextFlightCounter = (props) => {
     };
   });
 
+  const propos = useSpring({ from: { opacity: 0 }, to: { opacity: 1 } });
+
   return (
     <React.Fragment>
-      <h1 className={styles.h1}>Next ISS pass above your home in:</h1>
-      <div className={styles.timeContainer}>
-        <p className={styles.numbers}>{remainingHours}</p>
-        <p className={styles.numbers}>:</p>
-        <p className={styles.numbers}>{remainingMinutes}</p>
-        <p className={styles.numbers}>:</p>
-        <p className={styles.numbers}>{remainingSeconds}</p>
-      </div>
+      <animated.div style={propos} className={styles.mainInfo}>
+        <h1 className={styles.h1}>Next ISS pass above your home in:</h1>
+        <div className={styles.timeContainer}>
+          <p className={styles.numbers}>{remainingHours}</p>
+          <p className={styles.numbers}>:</p>
+          <p className={styles.numbers}>{remainingMinutes}</p>
+          <p className={styles.numbers}>:</p>
+          <p className={styles.numbers}>{remainingSeconds}</p>
+        </div>
+      </animated.div>
     </React.Fragment>
   );
 };

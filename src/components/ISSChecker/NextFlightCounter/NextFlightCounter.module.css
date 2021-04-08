@@ -2,8 +2,9 @@
   color: white;
   text-align: center;
   position: relative;
-  top: 300px;
+  top: 30%;
   font-size: 3em;
+  margin: auto;
 }
 
 .numbers {
@@ -13,10 +14,20 @@
 }
 
 .timeContainer {
-  width: 50%;
-  margin: 0 auto;
   text-align: center;
   font-size: 4em;
+}
+.mainInfo {
   position: relative;
-  top: 400px;
+  top: 40%;
+}
+
+@media (max-width: 800px) {
+  .h1 {
+    width: 80%;
+    font-size: 2em;
+  }
+  .mainInfo {
+    top: 20%;
+  }
 }
