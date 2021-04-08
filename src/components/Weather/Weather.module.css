@@ -1,14 +1,25 @@
-.marsImg {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
 .weatherBoxesContainer {
   position: absolute;
   width: 100%;
   bottom: 10%;
+}
+
+.weatherContainer {
+  background-image: url("../../assets/mars.jpg");
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  position: fixed;
+  background-size: cover;
+}
+
+@media (max-width: 800px) {
+  .weatherBoxesContainer {
+    position: static;
+  }
+
+  .weatherContainer {
+    position: absolute;
+    height: auto;
+  }
 }

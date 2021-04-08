@@ -1,18 +1,16 @@
 import "./App.css";
 import Layout from "./components/Layout/Layout";
-import Carousel from "./components/Carousel/Carousel";
-import { Switch, Route } from "react-router";
+import ISSChecker from "./components/ISSChecker/ISSChecker";
+import { Switch, Route } from "react-router-dom";
 import Weather from "./components/Weather/Weather";
 function App() {
   return (
-    <div className="App">
-      <Layout>
-        <Switch>
-          <Route path="/weather" component={Weather}></Route>
-          <Route path="/" component={Carousel}></Route>
-        </Switch>
-      </Layout>
-    </div>
+    <Layout>
+      <Switch>
+        <Route path="/weather" component={Weather} />
+        <Route path="/" component={ISSChecker} />
+      </Switch>
+    </Layout>
   );
 }
 

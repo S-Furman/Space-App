@@ -4,7 +4,7 @@ const Layout = (props) => {
   return (
     <React.Fragment>
       <Navbar></Navbar>
-      <main>{props.children}</main>
+      {props.children}
     </React.Fragment>
   );
 };

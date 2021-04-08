@@ -10,6 +10,8 @@
 .description {
   font-size: 1.5em;
   color: white;
+  padding: 20px;
+  text-align: center;
 }
 
 .p {
@@ -28,4 +30,13 @@
 }
 .box2 {
   flex: 1;
+}
+
+@media (max-width: 800px) {
+  .mainFrame {
+    position: static;
+    width: 80%;
+    margin: auto;
+    margin-top: 30%;
+  }
 }

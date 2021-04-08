@@ -15,7 +15,6 @@
 }
 
 .data {
-  position: relative;
   box-sizing: border-box;
   width: 14.66%;
   margin: 1%;
@@ -24,9 +23,10 @@
   display: inline-block;
 }
 
-.firstDay {
-  width: 40%;
-  height: 45%;
-  position: absolute;
-  left: 20px;
+@media (max-width: 800px) {
+  .data {
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+  }
 }

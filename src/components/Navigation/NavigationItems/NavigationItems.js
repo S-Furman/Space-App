@@ -4,7 +4,6 @@ const NavigationItems = () => (
   <ul>
     <NavigationItem link="/">Home</NavigationItem>
     <NavigationItem link="/weather">Weather</NavigationItem>
-    {/* <NavigationItem link="/test">New</NavigationItem> */}
   </ul>
 );
 

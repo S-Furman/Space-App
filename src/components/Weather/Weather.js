@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Weather.module.css";
-import Mars from "../../assets/mars.jpg";
 import SingleDayWeather from "./SingleDayWeather/SingleDayWeather";
 import TodayWeather from "./TodayWeather/TodayWeather";
 
@@ -16,6 +15,7 @@ const Weather = () => {
   const [dataFromApi, setDataFromApi] = useState({ data: [], loaded: false });
   useEffect(() => {
     const dayOnMars = getActualDayOnMars();
+
     const day1 = new Promise((resolve, error) => {
       resolve(
         fetch(
@@ -76,36 +76,35 @@ const Weather = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  let content = null;
-  if (dataFromApi.loaded) {
-    content = (
-      <div>
-        <img className={styles.marsImg} src={Mars} alt="Mars" />
-        <TodayWeather
-          sol={dataFromApi.data[0].sol}
-          sunrise={dataFromApi.data[0].sunrise}
-          sunset={dataFromApi.data[0].sunset}
-          minTemp={dataFromApi.data[0].min_temp}
-          maxTemp={dataFromApi.data[0].max_temp}
-        />
-        <div className={styles.weatherBoxesContainer}>
-          {dataFromApi.data.slice(0, 6).map((day) => {
-            return (
-              <SingleDayWeather
-                key={day.id}
-                sol={day.sol}
-                sunrise={day.sunrise}
-                sunset={day.sunset}
-                minTemp={day.min_temp}
-                maxTemp={day.max_temp}
-              />
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
-  return <React.Fragment>{content}</React.Fragment>;
+  return (
+    <div className={styles.weatherContainer}>
+      {dataFromApi.loaded ? (
+        <React.Fragment>
+          <TodayWeather
+            sol={dataFromApi.data[6].sol}
+            sunrise={dataFromApi.data[6].sunrise}
+            sunset={dataFromApi.data[6].sunset}
+            minTemp={dataFromApi.data[6].min_temp}
+            maxTemp={dataFromApi.data[6].max_temp}
+          />
+          <div className={styles.weatherBoxesContainer}>
+            {dataFromApi.data.slice(0, 6).map((day) => {
+              return (
+                <SingleDayWeather
+                  key={day.id}
+                  sol={day.sol}
+                  sunrise={day.sunrise}
+                  sunset={day.sunset}
+                  minTemp={day.min_temp}
+                  maxTemp={day.max_temp}
+                />
+              );
+            })}
+          </div>
+        </React.Fragment>
+      ) : null}
+    </div>
+  );
 };
 
 export default Weather;

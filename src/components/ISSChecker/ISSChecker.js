@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ISSChecker.module.css";
-import Timer from "./NextFlightCounter/NextFlightCounter";
+import NextFlightCounter from "./NextFlightCounter/NextFlightCounter";
 
 const ISSChecker = () => {
   const [fetchedData, setFetchedData] = useState({
@@ -17,21 +17,18 @@ const ISSChecker = () => {
       );
   }, []);
 
-  let loadedData = null;
-  if (fetchedData.dataLoaded) {
-    let newest = new Date(fetchedData.data.response[0].risetime * 1000);
-    loadedData = (
-      <main>
-        <div className={styles.firstVh}>
-          <Timer time={newest}></Timer>
-        </div>
-
-        <div className={styles.secondVh}></div>
-      </main>
-    );
-  }
-
-  return <React.Fragment>{loadedData}</React.Fragment>;
+  return (
+    <main>
+      <div className={styles.firstVh}>
+        {fetchedData.dataLoaded ? (
+          <NextFlightCounter
+            time={new Date(fetchedData.data.response[0].risetime * 1000)}
+          />
+        ) : null}
+      </div>
+      <div className={styles.secondVh}></div>
+    </main>
+  );
 };
 
 export default ISSChecker;
