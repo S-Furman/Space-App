@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 import styles from "./NavigationItem.module.css";
 function NavigationItem(props) {
   return (
-    <NavLink to={props.link} className={styles.navLi}>
-      {props.children}
-    </NavLink>
+    <li className={styles.li}>
+      <NavLink to={props.link} className={styles.navLink}>
+        {props.children}
+      </NavLink>
+    </li>
   );
 }
 

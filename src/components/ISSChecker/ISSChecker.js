@@ -19,14 +19,14 @@ const ISSChecker = () => {
 
   return (
     <main>
-      <div className={styles.firstVh}>
+      <section className={styles.firstVh}>
         {fetchedData.dataLoaded ? (
           <NextFlightCounter
             time={new Date(fetchedData.data.response[0].risetime * 1000)}
           />
         ) : null}
-      </div>
-      <div className={styles.secondVh}></div>
+      </section>
+      <section className={styles.secondVh}></section>
     </main>
   );
 };
