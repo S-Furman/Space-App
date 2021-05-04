@@ -3,10 +3,13 @@ import styles from "./NextFlightCounter.module.css";
 
 import { useSpring, animated } from "react-spring";
 
-const NextFlightCounter = (props) => {
+interface NextFlightCounterProps {
+  time: number;
+}
+
+const NextFlightCounter = (props: NextFlightCounterProps) => {
   const actualDate = new Date();
-  const remainingTimeInSec =
-    (props.time.getTime() - actualDate.getTime()) / 1000;
+  const remainingTimeInSec = (props.time - actualDate.getTime()) / 1000;
   const hours = Math.floor((remainingTimeInSec % (60 * 60 * 24)) / (60 * 60));
   const minutes = Math.floor((remainingTimeInSec % (60 * 60)) / 60);
   const seconds = Math.floor(remainingTimeInSec % 60);

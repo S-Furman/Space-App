@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Weather.module.css";
 import SingleDayWeather from "./SingleDayWeather/SingleDayWeather";
 import TodayWeather from "./TodayWeather/TodayWeather";
+import { FetchedData } from "./interfaces/IFetchedData";
 
 const getActualDayOnMars = () => {
-  const actualTime = new Date();
+  const actualTime = new Date().valueOf();
   const daysFromStartOfCount = Math.round(actualTime / 1000 / 60 / 60 / 24);
-  const correction = 15664;
+
+  const correction = 15671;
   let actualSol = daysFromStartOfCount - correction;
   return actualSol;
 };
 
 const Weather = () => {
-  const [dataFromApi, setDataFromApi] = useState({ data: [], loaded: false });
+  const [dataFromApi, setDataFromApi] = useState<{
+    data: FetchedData[];
+    loaded: boolean;
+  }>({ data: [], loaded: false });
 
   useEffect(() => {
     const dayOnMars = getActualDayOnMars();
@@ -56,7 +61,7 @@ const Weather = () => {
     ).then((response) => response.json());
 
     Promise.all([day1, day2, day3, day4, day5, day6, day7])
-      .then((value) => setDataFromApi({ data: value, loaded: true }))
+      .then((values) => setDataFromApi({ data: values, loaded: true }))
       .catch((error) => console.log(error));
   }, []);
 
@@ -68,19 +73,19 @@ const Weather = () => {
             sol={dataFromApi.data[6].sol}
             sunrise={dataFromApi.data[6].sunrise}
             sunset={dataFromApi.data[6].sunset}
-            minTemp={dataFromApi.data[6].min_temp}
-            maxTemp={dataFromApi.data[6].max_temp}
+            min_temp={dataFromApi.data[6].min_temp}
+            max_temp={dataFromApi.data[6].max_temp}
           />
           <section className={styles.weatherBoxesContainer}>
-            {dataFromApi.data.slice(0, 6).map((day) => {
+            {dataFromApi.data.slice(0, 6).map((day, index) => {
               return (
                 <SingleDayWeather
-                  key={day.id}
+                  key={index}
                   sol={day.sol}
                   sunrise={day.sunrise}
                   sunset={day.sunset}
-                  minTemp={day.min_temp}
-                  maxTemp={day.max_temp}
+                  min_temp={day.min_temp}
+                  max_temp={day.max_temp}
                 />
               );
             })}

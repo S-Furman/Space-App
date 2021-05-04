@@ -4,7 +4,7 @@ import NextFlightCounter from "./NextFlightCounter/NextFlightCounter";
 
 const ISSChecker = () => {
   const [fetchedData, setFetchedData] = useState({
-    data: [],
+    data: 0,
     dataLoaded: false,
   });
   useEffect(() => {
@@ -13,16 +13,18 @@ const ISSChecker = () => {
     )
       .then((response) => response.json())
       .then((fetchedData) =>
-        setFetchedData({ data: fetchedData, dataLoaded: true })
+        setFetchedData({
+          data: fetchedData.response[0].risetime,
+          dataLoaded: true,
+        })
       );
   }, []);
-
   return (
     <main>
       <section className={styles.firstVh}>
         {fetchedData.dataLoaded ? (
           <NextFlightCounter
-            time={new Date(fetchedData.data.response[0].risetime * 1000)}
+            time={new Date(fetchedData.data * 1000).getTime()}
           />
         ) : null}
       </section>

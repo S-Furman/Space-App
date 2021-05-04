@@ -1,6 +1,11 @@
 import React from "react";
 import Navbar from "../Navigation/Navbar/Navbar";
-const Layout = (props) => {
+
+interface ILayout {
+  children: React.ReactNode;
+}
+
+const Layout = (props: ILayout) => {
   return (
     <React.Fragment>
       <Navbar></Navbar>

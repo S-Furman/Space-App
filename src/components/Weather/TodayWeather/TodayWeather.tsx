@@ -1,8 +1,9 @@
-import React from "react";
 import singleDayStyles from "../SingleDayWeather/SingleDayWeather.module.css";
 import styles from "./TodayWeather.module.css";
 import { useSpring, animated } from "react-spring";
-const TodayWeather = (props) => {
+import { FetchedData } from "../interfaces/IFetchedData";
+
+const TodayWeather = (props: FetchedData) => {
   return (
     <animated.article
       style={useSpring({ from: { opacity: 0 }, to: { opacity: 1 } })}
@@ -16,11 +17,11 @@ const TodayWeather = (props) => {
       <div className={styles.flex}>
         <section className={styles.box1}>
           <p className={styles.p}>Sunrise: {props.sunrise}</p>
-          <p className={styles.p}>Min temp: {props.maxTemp}°C</p>
+          <p className={styles.p}>Min temp: {props.max_temp}°C</p>
         </section>
         <section className={styles.box2}>
           <p className={styles.p}>Sunset: {props.sunset}</p>
-          <p className={styles.p}>Max temp: {props.minTemp}°C</p>
+          <p className={styles.p}>Max temp: {props.min_temp}°C</p>
         </section>
       </div>
     </animated.article>
